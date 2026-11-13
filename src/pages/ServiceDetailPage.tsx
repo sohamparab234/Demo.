@@ -32,7 +32,7 @@ export function ServiceDetailPage({ serviceId, onBack, onNavigate }: { serviceId
   const [loading, setLoading] = useState(true);
   const [step, setStep] = useState<Step>('detail');
   const [consentOpen, setConsentOpen] = useState(false);
-  const [consentGranted, setConsentGranted] = useState(false);
+  const [, setConsentGranted] = useState(false);
   const [applicationId, setApplicationId] = useState<string | null>(null);
   const [fetchResults, setFetchResults] = useState<FetchResult[]>([]);
   const [profile, setProfile] = useState<NormalizedProfile | null>(null);
@@ -116,11 +116,11 @@ export function ServiceDetailPage({ serviceId, onBack, onNavigate }: { serviceId
     await new Promise((resolve) => setTimeout(resolve, 800));
 
     if (service.eligibility_rules) {
-      const result = evaluateEligibility(service.eligibility_rules as any, normalizedProfile);
+      const result = evaluateEligibility(service.eligibility_rules, normalizedProfile);
       setEligibility(result);
 
       const status = result.eligible ? 'eligible' : result.needsReview ? 'needs_review' : 'not_eligible';
-      await updateApplicationStatus(appId, status as any, { eligibility_result: result });
+      await updateApplicationStatus(appId, status, { eligibility_result: result });
       await addApplicationEvent(
         appId,
         'eligibility_result',
@@ -259,7 +259,7 @@ export function ServiceDetailPage({ serviceId, onBack, onNavigate }: { serviceId
             <Card>
               <h3 className="font-serif font-semibold text-slate-900 mb-3">Eligibility Criteria</h3>
               <div className="space-y-2">
-                {(service.eligibility_rules as any[]).map((rule, i) => (
+                {service.eligibility_rules.map((rule, i) => (
                   <div key={i} className="flex items-start gap-2 text-sm text-slate-600">
                     <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0 mt-0.5" />
                     {rule.label}

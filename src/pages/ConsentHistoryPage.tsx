@@ -70,7 +70,7 @@ export function ConsentHistoryPage() {
 
                 {record.fields_accessed && Array.isArray(record.fields_accessed) && (
                   <div className="space-y-1.5">
-                    {(record.fields_accessed as any[]).map((fa, i) => (
+                    {record.fields_accessed.map((fa, i) => (
                       <div key={i} className="text-xs p-2 rounded-lg bg-slate-50 border border-slate-100">
                         <span className="font-medium text-slate-700 capitalize">{fa.source}:</span>
                         <span className="text-slate-500"> {fa.fields?.join(', ')}</span>

@@ -44,7 +44,7 @@ export function RegisterPage({ onBack }: { onBack: () => void }) {
   const [otpSent, setOtpSent] = useState(false);
 
   // DigiLocker
-  const [digiLockerConnected, setDigiLockerConnected] = useState(false);
+  const [, setDigiLockerConnected] = useState(false);
   const [retrievedDocs, setRetrievedDocs] = useState<RetrievedDoc[]>([]);
   const [selectedDocs, setSelectedDocs] = useState<Set<string>>(new Set());
 

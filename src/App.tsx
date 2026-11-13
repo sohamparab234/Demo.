@@ -23,7 +23,7 @@ function AppContent() {
     if (citizen) {
       setView(citizen.role === 'admin' ? 'admin-dashboard' : 'dashboard');
     }
-  }, [citizen?.id]);
+  }, [citizen]);
 
   if (!citizen) {
     return showRegister
@@ -40,8 +40,6 @@ function AppContent() {
     setSelectedService(id);
     setView('marketplace');
   };
-
-  const isAdmin = citizen.role === 'admin';
 
   const renderView = () => {
     if (selectedService) {

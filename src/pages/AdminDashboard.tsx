@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { FileCheck2, Server, Activity, CheckCircle2, Clock, AlertCircle, TrendingUp, Users } from 'lucide-react';
+import { FileCheck2, Server, Activity, Clock, TrendingUp, Users } from 'lucide-react';
 import { fetchAllApplications, fetchApiRegistry, fetchAuditLogs } from '@/lib/db';
-import type { Application } from '@/lib/types';
+import type { Application, ApiRegistryEntry, AuditLog } from '@/lib/types';
 import { ApiStatusBadge, StatusBadge, getIcon } from '@/components/ui/Badges';
 import { Card, Skeleton, EmptyState } from '@/components/ui';
 
 export function AdminDashboard() {
   const [applications, setApplications] = useState<Application[]>([]);
-  const [apis, setApis] = useState<any[]>([]);
-  const [logs, setLogs] = useState<any[]>([]);
+  const [apis, setApis] = useState<ApiRegistryEntry[]>([]);
+  const [logs, setLogs] = useState<AuditLog[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,7 +24,6 @@ export function AdminDashboard() {
   const totalApps = applications.length;
   const approved = applications.filter((a) => a.status === 'approved').length;
   const pending = applications.filter((a) => ['submitted', 'under_review', 'needs_review', 'manual_review'].includes(a.status)).length;
-  const rejected = applications.filter((a) => a.status === 'rejected' || a.status === 'not_eligible').length;
   const approvalRate = totalApps > 0 ? Math.round((approved / totalApps) * 100) : 0;
   const operationalApis = apis.filter((a) => a.status === 'operational').length;
 
@@ -101,11 +100,10 @@ export function AdminDashboard() {
               <div className="space-y-3">
                 {logs.map((log) => (
                   <div key={log.id} className="flex items-start gap-3 text-sm">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                      log.actor_role === 'admin' ? 'bg-orange-50 text-orange-600' :
-                      log.actor_role === 'system' ? 'bg-slate-100 text-slate-600' :
-                      'bg-gov-50 text-gov-600'
-                    }`}>
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${log.actor_role === 'admin' ? 'bg-orange-50 text-orange-600' :
+                        log.actor_role === 'system' ? 'bg-slate-100 text-slate-600' :
+                          'bg-gov-50 text-gov-600'
+                      }`}>
                       {log.actor_role === 'admin' ? <Users className="w-4 h-4" /> : <Activity className="w-4 h-4" />}
                     </div>
                     <div className="flex-1 min-w-0">

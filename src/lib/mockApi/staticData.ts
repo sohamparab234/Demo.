@@ -3,6 +3,8 @@ import type {
   ApplicationEvent,
   ApiRegistryEntry,
   Service,
+  ConsentRecord,
+  AuditLog,
 } from '@/lib/types';
 
 // Static seed data used when Supabase is not configured.
@@ -176,5 +178,5 @@ export const mockApiRegistry: ApiRegistryEntry[] = [
 // In-memory stores for mock mode (applications, events, consent, audit)
 export const mockApplications: Application[] = [];
 export const mockApplicationEvents: ApplicationEvent[] = [];
-export const mockConsentRecords: any[] = [];
-export const mockAuditLogs: any[] = [];
+export const mockConsentRecords: ConsentRecord[] = [];
+export const mockAuditLogs: AuditLog[] = [];

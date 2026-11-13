@@ -212,8 +212,8 @@ export async function addApplicationEvent(
 export async function fetchConsentRecords(citizenId: string): Promise<ConsentRecord[]> {
   if (!isSupabaseConfigured || !supabase) {
     return mockConsentRecords
-      .filter((r: any) => r.citizen_id === citizenId)
-      .sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      .filter((r: ConsentRecord) => r.citizen_id === citizenId)
+      .sort((a: ConsentRecord, b: ConsentRecord) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
   }
   const { data, error } = await supabase
     .from('consent_records')
@@ -259,7 +259,7 @@ export async function createConsentRecord(
 export async function fetchAllConsentRecords(): Promise<ConsentRecord[]> {
   if (!isSupabaseConfigured || !supabase) {
     return [...mockConsentRecords].sort(
-      (a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+      (a: ConsentRecord, b: ConsentRecord) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
     );
   }
   const { data, error } = await supabase
@@ -275,7 +275,7 @@ export async function fetchAllConsentRecords(): Promise<ConsentRecord[]> {
 export async function fetchAuditLogs(limit = 100): Promise<AuditLog[]> {
   if (!isSupabaseConfigured || !supabase) {
     return [...mockAuditLogs]
-      .sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      .sort((a: AuditLog, b: AuditLog) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
       .slice(0, limit);
   }
   const { data, error } = await supabase

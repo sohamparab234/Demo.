@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Server, Activity, RefreshCw } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import { fetchApiRegistry } from '@/lib/db';
+import type { ApiRegistryEntry } from '@/lib/types';
 import { ApiStatusBadge, getIcon } from '@/components/ui/Badges';
 import { Card, Skeleton } from '@/components/ui';
 
 export function AdminRegistry() {
-  const [apis, setApis] = useState<any[]>([]);
+  const [apis, setApis] = useState<ApiRegistryEntry[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

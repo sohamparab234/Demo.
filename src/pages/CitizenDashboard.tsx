@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FileCheck2, Clock, CheckCircle2, AlertTriangle, ArrowRight, Store, ShieldCheck } from 'lucide-react';
+import { FileCheck2, Clock, CheckCircle2, ArrowRight, Store, ShieldCheck } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { fetchApplications, fetchServices } from '@/lib/db';
 import type { Application, Service } from '@/lib/types';

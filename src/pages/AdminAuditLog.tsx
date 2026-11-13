@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { History, User, Shield, Settings } from 'lucide-react';
 import { fetchAuditLogs } from '@/lib/db';
+import type { AuditLog } from '@/lib/types';
 import { Card, EmptyState, Skeleton } from '@/components/ui';
 
 export function AdminAuditLog() {
-  const [logs, setLogs] = useState<any[]>([]);
+  const [logs, setLogs] = useState<AuditLog[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

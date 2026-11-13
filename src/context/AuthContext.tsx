@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
-import { demoCitizens, addRegisteredCitizen, generateCitizenMockData, isEmailRegistered, isIdentifierRegistered } from '@/lib/mockApi/seedData';
+import { demoCitizens, addRegisteredCitizen, generateCitizenMockData, isEmailRegistered } from '@/lib/mockApi/seedData';
 import type { DemoCitizen } from '@/lib/types';
 
 interface AuthState {
